@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Firework particle animation */
+@keyframes firework-particle {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(
+      calc(cos(var(--angle)) * var(--speed) * 50px),
+      calc(sin(var(--angle)) * var(--speed) * 50px)
+    ) scale(0);
+    opacity: 0;
+  }
+}
+
+.animate-firework-particle {
+  animation: firework-particle 1.2s ease-out forwards;
+}
