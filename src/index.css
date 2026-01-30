@@ -16,24 +16,6 @@ html, body {
   min-height: 100dvh;
 }
 
-/* Fun gradient background */
-.fun-gradient {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-}
-
-/* Animated gradient background */
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.animated-gradient {
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  animation: gradient-shift 15s ease infinite;
-}
-
 /* Bounce animation for correct answers */
 @keyframes bounce-in {
   0% { transform: scale(0); opacity: 0; }
@@ -56,16 +38,6 @@ html, body {
   animation: shake 0.6s ease-in-out;
 }
 
-/* Pulse glow effect */
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
-  50% { box-shadow: 0 0 40px rgba(168, 85, 247, 0.8); }
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
 /* Float animation for decorative elements */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
@@ -84,17 +56,6 @@ html, body {
 
 .animate-sparkle {
   animation: sparkle 1.5s ease-in-out infinite;
-}
-
-/* Pop animation for buttons */
-@keyframes pop {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-.hover-pop:hover {
-  animation: pop 0.3s ease-in-out;
 }
 
 /* Firework particle animation */
@@ -139,16 +100,6 @@ html, body {
 
 .animate-slide-up {
   animation: slide-up 0.4s ease-out;
-}
-
-/* Star burst for correct answers */
-@keyframes star-burst {
-  0% { transform: scale(0) rotate(0deg); opacity: 1; }
-  100% { transform: scale(2) rotate(180deg); opacity: 0; }
-}
-
-.animate-star-burst {
-  animation: star-burst 0.6s ease-out forwards;
 }
 
 /* Card glow effect on hover */
