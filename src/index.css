@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* iOS Safari safe area support */
+html, body, #root {
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for iOS */
+}
+
+#root {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
 /* Fun gradient background */
 .fun-gradient {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);

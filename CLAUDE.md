@@ -8,6 +8,8 @@ Glosor v2 - React app for practicing English vocabulary. Built with Vite, TypeSc
 
 Vocabulary data is fetched from a published Google Sheet (CSV format).
 
+**Live:** https://chredd.github.io/glosor-v2/
+
 ## Build & Development Commands
 
 ```bash
@@ -25,8 +27,9 @@ src/
 ├── components/      # React components
 │   ├── Quiz.tsx     # Quiz container with state management
 │   ├── QuizCard.tsx # Single word card with input/correction
-│   ├── Result.tsx   # Summary table after completion
-│   ├── Snowflakes.tsx # Celebration animation
+│   ├── Result.tsx   # Card-based summary after completion
+│   ├── WordList.tsx # Modal overlay showing all vocabulary
+│   ├── Fireworks.tsx # Celebration animation (all correct)
 │   └── Loading.tsx
 ├── hooks/
 │   ├── useVocabulary.ts # Fetches and parses CSV from Google Sheets
@@ -38,7 +41,7 @@ src/
 
 ## Data Source
 
-The vocabulary is loaded from a Google Sheet published as CSV. The sheet has two columns: `English | Swedish` (no header row).
+The vocabulary is loaded from a Google Sheet published as CSV. The sheet has two columns: `Swedish | English` with a header row (first row is skipped).
 
 URL is configured in `src/hooks/useVocabulary.ts`.
 

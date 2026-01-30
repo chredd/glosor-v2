@@ -43,7 +43,10 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen animated-gradient">
+    <div className="min-h-[100dvh] relative">
+      {/* Full-screen background that covers safe areas */}
+      <div className="fixed inset-0 animated-gradient -z-10" />
+
       {/* Fireworks celebration */}
       {showFireworks && (
         <Fireworks onComplete={() => setShowFireworks(false)} />
