@@ -3,12 +3,19 @@
 @tailwind utilities;
 
 /* iOS Safari safe area support */
-html, body, #root {
+html {
+  background: #667eea; /* Match gradient start color */
+}
+
+body {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   min-height: 100vh;
-  min-height: 100dvh; /* Dynamic viewport height for iOS */
+  min-height: 100dvh;
 }
 
 #root {
+  min-height: 100vh;
+  min-height: 100dvh;
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
   padding-left: env(safe-area-inset-left);
