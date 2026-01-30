@@ -88,24 +88,50 @@ export function QuizCard({
     speak(word.english, 'en');
   };
 
+  // Progress percentage for visual bar
+  const progressPercent = ((currentIndex + 1) / totalCount) * 100;
+
   return (
-    <div className="w-full max-w-md mx-auto">
-      {/* Progress counter */}
-      <div className="text-center text-gray-500 mb-4">
-        Ord {currentIndex + 1} av {totalCount}
+    <div className="w-full max-w-md mx-auto animate-slide-up">
+      {/* Progress bar */}
+      <div className="mb-4">
+        <div className="flex justify-between items-center mb-2">
+          <span className="text-white/90 text-sm font-medium">
+            Ord {currentIndex + 1} av {totalCount}
+          </span>
+          <span className="text-white/90 text-sm font-bold">
+            {Math.round(progressPercent)}%
+          </span>
+        </div>
+        <div className="h-3 bg-white/20 rounded-full overflow-hidden backdrop-blur-sm">
+          <div
+            className="h-full bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 rounded-full transition-all duration-500 ease-out"
+            style={{ width: `${progressPercent}%` }}
+          />
+        </div>
       </div>
 
       {/* Card */}
-      <div className="bg-white rounded-2xl shadow-lg p-8">
+      <div
+        className={`bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 card-glow ${
+          cardState === 'correct'
+            ? 'animate-bounce-in'
+            : cardState === 'incorrect'
+            ? 'animate-shake'
+            : ''
+        }`}
+      >
         {/* Swedish word */}
         <div className="text-center mb-8">
-          <p className="text-sm text-gray-500 mb-2">Svenska</p>
+          <p className="text-sm text-purple-500 font-bold mb-2 uppercase tracking-wide">
+            🇸🇪 Svenska
+          </p>
           <div className="flex items-center justify-center gap-3">
-            <p className="text-3xl font-semibold text-gray-800">{word.swedish}</p>
+            <p className="text-3xl font-black gradient-text">{word.swedish}</p>
             <button
               type="button"
               onClick={handleSpeak}
-              className="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-full transition-colors"
+              className="p-3 text-purple-500 hover:text-purple-700 hover:bg-purple-100 rounded-full transition-all hover:scale-110"
               aria-label="Läs upp svenska ordet"
             >
               <svg
@@ -130,8 +156,11 @@ export function QuizCard({
         {cardState === 'answering' && (
           <form onSubmit={handleSubmit}>
             <div className="mb-6">
-              <label htmlFor="answer" className="block text-sm text-gray-500 mb-2">
-                Engelska
+              <label
+                htmlFor="answer"
+                className="block text-sm text-purple-500 font-bold mb-2 uppercase tracking-wide"
+              >
+                🇬🇧 Engelska
               </label>
               <input
                 ref={inputRef}
@@ -143,8 +172,8 @@ export function QuizCard({
                 autoCorrect="off"
                 autoCapitalize="off"
                 spellCheck="false"
-                className="w-full px-4 py-3 text-xl border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                placeholder="Skriv svaret..."
+                className="w-full px-5 py-4 text-xl border-3 border-purple-200 rounded-2xl focus:border-purple-500 focus:outline-none focus:ring-4 focus:ring-purple-200 transition-all bg-purple-50/50 font-medium"
+                placeholder="Skriv svaret här..."
               />
             </div>
 
@@ -152,16 +181,16 @@ export function QuizCard({
               <button
                 type="submit"
                 disabled={!userInput.trim()}
-                className="flex-1 py-3 px-6 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+                className="flex-1 py-4 px-6 fun-button text-white font-bold rounded-2xl disabled:opacity-40 disabled:cursor-not-allowed disabled:transform-none transition-all text-lg"
               >
-                Svara
+                Kolla! ✨
               </button>
               <button
                 type="button"
                 onClick={handleShowAnswer}
-                className="py-3 px-6 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition-colors"
+                className="py-4 px-6 bg-gray-100 text-gray-600 font-bold rounded-2xl hover:bg-gray-200 transition-all hover:scale-105"
               >
-                Rätta
+                🤔 Visa
               </button>
             </div>
           </form>
@@ -170,14 +199,19 @@ export function QuizCard({
         {/* Correct answer */}
         {cardState === 'correct' && (
           <div className="text-center">
-            <div className="mb-4 p-4 bg-green-50 rounded-lg border-2 border-green-200">
-              <p className="text-green-600 font-medium mb-1">Rätt!</p>
+            <div className="mb-6 p-6 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl border-2 border-green-300">
+              <div className="text-5xl mb-2">🎉</div>
+              <p className="text-green-600 font-black text-xl mb-2">
+                RÄTT! Snyggt jobbat!
+              </p>
               <div className="flex items-center justify-center gap-2">
-                <p className="text-2xl font-semibold text-green-700">{word.english}</p>
+                <p className="text-2xl font-bold text-green-700">
+                  {word.english}
+                </p>
                 <button
                   type="button"
                   onClick={handleSpeakEnglish}
-                  className="p-1 text-green-600 hover:text-green-800 hover:bg-green-100 rounded-full transition-colors"
+                  className="p-2 text-green-600 hover:text-green-800 hover:bg-green-200 rounded-full transition-all hover:scale-110"
                   aria-label="Läs upp engelska ordet"
                 >
                   <svg
@@ -199,9 +233,9 @@ export function QuizCard({
             </div>
             <button
               onClick={handleNext}
-              className="w-full py-3 px-6 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors"
+              className="w-full py-4 px-6 success-button text-white font-bold rounded-2xl transition-all text-lg hover:scale-[1.02]"
             >
-              Nästa
+              Nästa ord 👉
             </button>
           </div>
         )}
@@ -209,18 +243,26 @@ export function QuizCard({
         {/* Incorrect answer */}
         {cardState === 'incorrect' && (
           <div className="text-center">
-            <div className="mb-4 p-4 bg-red-50 rounded-lg border-2 border-red-200">
-              <p className="text-red-600 font-medium mb-1">Fel</p>
-              <p className="text-sm text-gray-500 mb-2">
-                Du skrev: <span className="text-red-600">{userInput}</span>
+            <div className="mb-6 p-6 bg-gradient-to-br from-orange-100 to-red-100 rounded-2xl border-2 border-orange-300">
+              <div className="text-5xl mb-2">😅</div>
+              <p className="text-orange-600 font-black text-xl mb-2">
+                Nästan! Försök igen nästa gång
+              </p>
+              <p className="text-sm text-gray-500 mb-3">
+                Du skrev:{' '}
+                <span className="text-orange-600 font-medium line-through">
+                  {userInput}
+                </span>
               </p>
               <p className="text-sm text-gray-500">Rätt svar:</p>
               <div className="flex items-center justify-center gap-2">
-                <p className="text-2xl font-semibold text-red-700">{word.english}</p>
+                <p className="text-2xl font-bold text-green-600">
+                  {word.english}
+                </p>
                 <button
                   type="button"
                   onClick={handleSpeakEnglish}
-                  className="p-1 text-red-600 hover:text-red-800 hover:bg-red-100 rounded-full transition-colors"
+                  className="p-2 text-green-600 hover:text-green-800 hover:bg-green-200 rounded-full transition-all hover:scale-110"
                   aria-label="Läs upp engelska ordet"
                 >
                   <svg
@@ -242,9 +284,9 @@ export function QuizCard({
             </div>
             <button
               onClick={handleNext}
-              className="w-full py-3 px-6 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+              className="w-full py-4 px-6 fun-button text-white font-bold rounded-2xl transition-all text-lg hover:scale-[1.02]"
             >
-              Nästa
+              Nästa ord 👉
             </button>
           </div>
         )}
@@ -252,14 +294,19 @@ export function QuizCard({
         {/* Manual correction mode */}
         {cardState === 'manual' && (
           <div className="text-center">
-            <div className="mb-4 p-4 bg-blue-50 rounded-lg border-2 border-blue-200">
-              <p className="text-blue-600 font-medium mb-1">Rätt svar:</p>
+            <div className="mb-6 p-6 bg-gradient-to-br from-blue-100 to-purple-100 rounded-2xl border-2 border-purple-300">
+              <div className="text-5xl mb-2">💡</div>
+              <p className="text-purple-600 font-black text-xl mb-2">
+                Rätt svar är:
+              </p>
               <div className="flex items-center justify-center gap-2">
-                <p className="text-2xl font-semibold text-blue-700">{word.english}</p>
+                <p className="text-2xl font-bold text-purple-700">
+                  {word.english}
+                </p>
                 <button
                   type="button"
                   onClick={handleSpeakEnglish}
-                  className="p-1 text-blue-600 hover:text-blue-800 hover:bg-blue-100 rounded-full transition-colors"
+                  className="p-2 text-purple-600 hover:text-purple-800 hover:bg-purple-200 rounded-full transition-all hover:scale-110"
                   aria-label="Läs upp engelska ordet"
                 >
                   <svg
@@ -279,18 +326,21 @@ export function QuizCard({
                 </button>
               </div>
             </div>
+            <p className="text-gray-600 font-medium mb-4">
+              Kunde du det här ordet?
+            </p>
             <div className="flex gap-3">
               <button
                 onClick={() => handleManualCorrection(false)}
-                className="flex-1 py-3 px-6 bg-red-100 text-red-700 font-medium rounded-lg hover:bg-red-200 transition-colors"
+                className="flex-1 py-4 px-6 danger-button text-white font-bold rounded-2xl transition-all hover:scale-[1.02]"
               >
-                Fel
+                Nej 😕
               </button>
               <button
                 onClick={() => handleManualCorrection(true)}
-                className="flex-1 py-3 px-6 bg-green-100 text-green-700 font-medium rounded-lg hover:bg-green-200 transition-colors"
+                className="flex-1 py-4 px-6 success-button text-white font-bold rounded-2xl transition-all hover:scale-[1.02]"
               >
-                Rätt
+                Ja! 🎯
               </button>
             </div>
           </div>

@@ -2,6 +2,87 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fun gradient background */
+.fun-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+}
+
+/* Animated gradient background */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-gradient {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+/* Bounce animation for correct answers */
+@keyframes bounce-in {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Shake animation for wrong answers */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.animate-shake {
+  animation: shake 0.6s ease-in-out;
+}
+
+/* Pulse glow effect */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(168, 85, 247, 0.8); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Float animation for decorative elements */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Sparkle effect */
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+.animate-sparkle {
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+/* Pop animation for buttons */
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.hover-pop:hover {
+  animation: pop 0.3s ease-in-out;
+}
+
 /* Firework particle animation */
 @keyframes firework-particle {
   0% {
@@ -19,4 +100,93 @@
 
 .animate-firework-particle {
   animation: firework-particle 1.2s ease-out forwards;
+}
+
+/* Rainbow text effect */
+@keyframes rainbow {
+  0% { color: #ff6b6b; }
+  16% { color: #feca57; }
+  33% { color: #48dbfb; }
+  50% { color: #1dd1a1; }
+  66% { color: #5f27cd; }
+  83% { color: #ff9ff3; }
+  100% { color: #ff6b6b; }
+}
+
+.animate-rainbow {
+  animation: rainbow 3s linear infinite;
+}
+
+/* Slide up animation */
+@keyframes slide-up {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.4s ease-out;
+}
+
+/* Star burst for correct answers */
+@keyframes star-burst {
+  0% { transform: scale(0) rotate(0deg); opacity: 1; }
+  100% { transform: scale(2) rotate(180deg); opacity: 0; }
+}
+
+.animate-star-burst {
+  animation: star-burst 0.6s ease-out forwards;
+}
+
+/* Card glow effect on hover */
+.card-glow {
+  transition: all 0.3s ease;
+}
+
+.card-glow:hover {
+  box-shadow: 0 10px 40px rgba(168, 85, 247, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Fun button styles */
+.fun-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.fun-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.fun-button:active {
+  transform: translateY(0);
+}
+
+/* Success button */
+.success-button {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  box-shadow: 0 4px 15px rgba(56, 239, 125, 0.4);
+}
+
+.success-button:hover {
+  box-shadow: 0 6px 20px rgba(56, 239, 125, 0.6);
+}
+
+/* Danger button */
+.danger-button {
+  background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+  box-shadow: 0 4px 15px rgba(235, 51, 73, 0.4);
+}
+
+.danger-button:hover {
+  box-shadow: 0 6px 20px rgba(235, 51, 73, 0.6);
 }

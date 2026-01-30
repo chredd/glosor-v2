@@ -43,16 +43,49 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-blue-100">
+    <div className="min-h-screen animated-gradient">
       {/* Fireworks celebration */}
       {showFireworks && (
         <Fireworks onComplete={() => setShowFireworks(false)} />
       )}
 
-      <div className="container mx-auto px-4 py-8">
+      {/* Decorative floating elements */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-20 left-10 text-4xl animate-float opacity-20">
+          ✨
+        </div>
+        <div
+          className="absolute top-40 right-20 text-3xl animate-float opacity-20"
+          style={{ animationDelay: '1s' }}
+        >
+          📚
+        </div>
+        <div
+          className="absolute bottom-40 left-20 text-3xl animate-float opacity-20"
+          style={{ animationDelay: '2s' }}
+        >
+          🌟
+        </div>
+        <div
+          className="absolute bottom-20 right-10 text-4xl animate-float opacity-20"
+          style={{ animationDelay: '0.5s' }}
+        >
+          🎯
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 py-8 relative z-10">
         {/* Header */}
         <header className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">Pys glosor</h1>
+          <h1 className="text-4xl font-black text-white drop-shadow-lg animate-slide-up">
+            <span className="inline-block hover:animate-bounce cursor-default">
+              🎮
+            </span>{' '}
+            Glosquiz{' '}
+            <span className="inline-block hover:animate-bounce cursor-default">
+              🚀
+            </span>
+          </h1>
         </header>
 
         {/* Main content */}
@@ -60,11 +93,11 @@ function App() {
           {loading && <Loading />}
 
           {error && (
-            <div className="text-center p-8">
-              <p className="text-red-600 mb-4">{error}</p>
+            <div className="text-center p-8 bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl max-w-md mx-auto">
+              <p className="text-red-500 mb-4 text-lg">😕 {error}</p>
               <button
                 onClick={() => window.location.reload()}
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                className="px-6 py-3 fun-button text-white font-bold rounded-full"
               >
                 Försök igen
               </button>
@@ -89,22 +122,22 @@ function App() {
         {quizState === 'quiz' && (
           <footer className="mt-8 text-center space-y-3">
             {speechSupported && (
-              <label className="inline-flex items-center gap-2 text-gray-500 cursor-pointer">
+              <label className="inline-flex items-center gap-2 text-white/90 cursor-pointer bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full hover:bg-white/20 transition-colors">
                 <input
                   type="checkbox"
                   checked={readAloud}
                   onChange={(e) => setReadAloud(e.target.checked)}
-                  className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                  className="w-5 h-5 rounded-full border-2 border-white/50 text-purple-500 focus:ring-purple-400 focus:ring-offset-0"
                 />
-                <span className="text-sm">Läs upp</span>
+                <span className="text-sm font-medium">🔊 Läs upp orden</span>
               </label>
             )}
             <div>
               <button
                 onClick={() => setShowWordList(true)}
-                className="text-sm text-blue-600 hover:text-blue-800 hover:underline"
+                className="text-sm text-white/90 hover:text-white bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full hover:bg-white/20 transition-all font-medium"
               >
-                Visa alla ord
+                📖 Visa alla ord
               </button>
             </div>
           </footer>
