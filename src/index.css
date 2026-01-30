@@ -2,12 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* iOS Safari safe area support - gradient covers entire screen including safe areas */
+/* iOS Safari safe area support */
 html, body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-  background-attachment: fixed;
+  background: linear-gradient(180deg, #667eea 0%, #764ba2 50%, #667eea 100%);
   min-height: 100%;
   min-height: 100dvh;
 }
