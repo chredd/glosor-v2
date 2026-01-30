@@ -279,7 +279,6 @@ export function QuizCard({
                 </button>
               </div>
             </div>
-            <p className="text-gray-600 mb-4">Stämde ditt svar?</p>
             <div className="flex gap-3">
               <button
                 onClick={() => handleManualCorrection(false)}

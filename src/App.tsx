@@ -6,6 +6,7 @@ import { Loading } from './components/Loading';
 import { Quiz } from './components/Quiz';
 import { Result } from './components/Result';
 import { Fireworks } from './components/Fireworks';
+import { WordList } from './components/WordList';
 
 function App() {
   const { words, loading, error } = useVocabulary();
@@ -15,6 +16,7 @@ function App() {
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [readAloud, setReadAloud] = useState(false);
   const [showFireworks, setShowFireworks] = useState(false);
+  const [showWordList, setShowWordList] = useState(false);
 
   // Update quiz state based on loading
   useEffect(() => {
@@ -50,18 +52,7 @@ function App() {
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <header className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-800 mb-2">Glosor</h1>
-          {quizState === 'quiz' && speechSupported && (
-            <label className="inline-flex items-center gap-2 text-gray-600 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={readAloud}
-                onChange={(e) => setReadAloud(e.target.checked)}
-                className="w-5 h-5 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-              />
-              <span>Läs upp</span>
-            </label>
-          )}
+          <h1 className="text-3xl font-bold text-gray-800">Pys glosor</h1>
         </header>
 
         {/* Main content */}
@@ -93,7 +84,37 @@ function App() {
             <Result answers={answers} onRestart={handleRestart} />
           )}
         </main>
+
+        {/* Footer settings */}
+        {quizState === 'quiz' && (
+          <footer className="mt-8 text-center space-y-3">
+            {speechSupported && (
+              <label className="inline-flex items-center gap-2 text-gray-500 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={readAloud}
+                  onChange={(e) => setReadAloud(e.target.checked)}
+                  className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                />
+                <span className="text-sm">Läs upp</span>
+              </label>
+            )}
+            <div>
+              <button
+                onClick={() => setShowWordList(true)}
+                className="text-sm text-blue-600 hover:text-blue-800 hover:underline"
+              >
+                Visa alla ord
+              </button>
+            </div>
+          </footer>
+        )}
       </div>
+
+      {/* Word list modal */}
+      {showWordList && (
+        <WordList words={words} onClose={() => setShowWordList(false)} speak={speak} />
+      )}
     </div>
   );
 }
