@@ -3,20 +3,28 @@
 @tailwind utilities;
 
 /* iOS Safari safe area support - gradient covers entire screen including safe areas */
-html {
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  animation: gradient-shift 15s ease infinite;
+html, body {
+  margin: 0;
+  padding: 0;
   min-height: 100%;
 }
 
-body, #root {
-  background: transparent;
-  min-height: 100vh;
-  min-height: 100dvh;
+body::before {
+  content: '';
+  position: fixed;
+  top: -50px;
+  left: 0;
+  right: 0;
+  bottom: -50px;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
+  z-index: -1;
 }
 
 #root {
+  min-height: 100vh;
+  min-height: 100dvh;
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
   padding-left: env(safe-area-inset-left);
